@@ -1,3 +1,6 @@
+import 'dart:js';
+
+import 'package:anime_plus/src/AuthenticationService.dart';
 import 'package:anime_plus/src/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -77,11 +80,13 @@ class _LoginPageState extends State<LoginPage> {
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
               colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-      child: Text(
-        'Login',
-        style: TextStyle(fontSize: 20, color: Colors.white),
+      child: RaisedButton(
+        child:Text('Login', style: TextStyle(fontSize: 20, color: Colors.white)),
+        onPressed:(){}
       ),
+
     );
+
   }
 
   Widget _divider() {
