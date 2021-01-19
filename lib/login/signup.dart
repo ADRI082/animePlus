@@ -10,7 +10,6 @@ class SignUpPage extends StatefulWidget {
 
   final String title;
 
-
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
@@ -33,8 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
               padding: EdgeInsets.only(left: 0, top: 10, bottom: 10),
               child: Icon(Icons.keyboard_arrow_left, color: Colors.black),
             ),
-            Text('Back',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500))
+            Text('Atrás', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500))
           ],
         ),
       ),
@@ -86,13 +84,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-          child: Text(
-            'Register Now',
-            style: TextStyle(fontSize: 20, color: Colors.white),
-          ),
+          child: Text('Registrarse ahora', style: TextStyle(fontSize: 20, color: Colors.white)),
         ),
         RaisedButton(onPressed: () {
-          final email =  emailController.text.trim();
           context.read<AuthenticationService>().signUp(
             email: emailController.text.trim(),
             password: passwordController.text.trim(),
@@ -116,14 +110,14 @@ class _SignUpPageState extends State<SignUpPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Already have an account ?',
+              '¿Tienes ya una cuenta?',
               style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
             ),
             SizedBox(
               width: 10,
             ),
             Text(
-              'Login',
+              'Iniciar Sesión',
               style: TextStyle(
                   color: Color(0xfff79c4f),
                   fontSize: 13,
@@ -139,22 +133,16 @@ class _SignUpPageState extends State<SignUpPage> {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-          text: 'd',
+          text: 'A',
           style: GoogleFonts.portLligatSans(
             textStyle: Theme.of(context).textTheme.headline4,
             fontSize: 30,
             fontWeight: FontWeight.w700,
-            color: Color(0xffe46b10),
+            color: Colors.white,
           ),
           children: [
-            TextSpan(
-              text: 'ev',
-              style: TextStyle(color: Colors.black, fontSize: 30),
-            ),
-            TextSpan(
-              text: 'rnz',
-              style: TextStyle(color: Color(0xffe46b10), fontSize: 30),
-            ),
+            TextSpan(text: 'ni', style: TextStyle(color: Colors.black, fontSize: 30)),
+            TextSpan(text: 'me+',style: TextStyle(color: Colors.white, fontSize: 30)),
           ]),
     );
   }
@@ -162,7 +150,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryField("Username",usuarioController),
+        _entryField("Username", usuarioController),
         _entryField("Email id", emailController),
         _entryField("Password", passwordController,isPassword: true),
       ],
@@ -191,13 +179,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   children: <Widget>[
                     SizedBox(height: height * .2),
                     _title(),
-                    SizedBox(
-                      height: 50,
-                    ),
+                    SizedBox(height: 50),
                     _emailPasswordWidget(),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    SizedBox(height: 20),
                     _submitButton(context),
                     SizedBox(height: height * .14),
                     _loginAccountLabel(),

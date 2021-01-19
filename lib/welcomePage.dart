@@ -16,10 +16,7 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   Widget _submitButton() {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginPage()));
-      },
+      onTap: () =>  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage())),
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 13),
@@ -42,10 +39,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
   Widget _signUpButton() {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SignUpPage()));
-      },
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage())),
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 13),
@@ -54,11 +48,26 @@ class _WelcomePageState extends State<WelcomePage> {
           borderRadius: BorderRadius.all(Radius.circular(5)),
           border: Border.all(color: Colors.white, width: 2),
         ),
-        child: Text(
-          'Registrarse',
-          style: TextStyle(fontSize: 20, color: Colors.white),
-        ),
+        child: Text('Registrarse',style: TextStyle(fontSize: 20, color: Colors.white)),
       ),
+    );
+  }
+
+  Widget _title() {
+    return RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(
+          text: 'A',
+          style: GoogleFonts.portLligatSans(
+            textStyle: Theme.of(context).textTheme.headline4,
+            fontSize: 30,
+            fontWeight: FontWeight.w700,
+            color: Colors.white,
+          ),
+          children: [
+            TextSpan(text: 'ni', style: TextStyle(color: Colors.black, fontSize: 30)),
+            TextSpan(text: 'me+',style: TextStyle(color: Colors.white, fontSize: 30)),
+          ]),
     );
   }
 
@@ -90,30 +99,6 @@ class _WelcomePageState extends State<WelcomePage> {
   //       ));
   // }
 
-  Widget _title() {
-    return RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-          text: 'A',
-          style: GoogleFonts.portLligatSans(
-            textStyle: Theme.of(context).textTheme.headline4,
-            fontSize: 30,
-            fontWeight: FontWeight.w700,
-            color: Colors.white,
-          ),
-          children: [
-            TextSpan(
-              text: 'ni',
-              style: TextStyle(color: Colors.black, fontSize: 30),
-            ),
-            TextSpan(
-              text: 'me+',
-              style: TextStyle(color: Colors.white, fontSize: 30),
-            ),
-          ]),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,18 +124,12 @@ class _WelcomePageState extends State<WelcomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               _title(),
-              SizedBox(
-                height: 80,
-              ),
+              SizedBox(height: 80),
               _submitButton(),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 20),
               _signUpButton(),
-              SizedBox(
-                height: 20,
-              ),
-              // _label()
+              SizedBox(height: 20),
+              // _label() // Comentamos el fingerprint
             ],
           ),
         ),
