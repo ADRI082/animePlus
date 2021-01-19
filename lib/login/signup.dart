@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:anime_plus/src/Widget/bezierContainer.dart';
-import 'package:anime_plus/src/loginPage.dart';
+import 'Widget/bezierContainer.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'loginPage.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key key, this.title}) : super(key: key);
@@ -122,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
       text: TextSpan(
           text: 'd',
           style: GoogleFonts.portLligatSans(
-            textStyle: Theme.of(context).textTheme.display1,
+            textStyle: Theme.of(context).textTheme.headline4,
             fontSize: 30,
             fontWeight: FontWeight.w700,
             color: Color(0xffe46b10),
