@@ -87,10 +87,13 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Text('Registrarse ahora', style: TextStyle(fontSize: 20, color: Colors.white)),
         ),
         RaisedButton(onPressed: () {
+
           context.read<AuthenticationService>().signUp(
             email: emailController.text.trim(),
             password: passwordController.text.trim(),
           );
+
+
         }, child: Text('Button'),)
       ],
     );

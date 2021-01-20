@@ -1,7 +1,10 @@
 
 import 'package:anime_plus/login/signup.dart';
+import 'package:anime_plus/welcomePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../AuthenticationService.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -29,9 +32,12 @@ class _HomePageState extends State<HomePage> {
                   spreadRadius: 2)
             ],
             color: Colors.white),
-        child: Text(
-          'Login',
-          style: TextStyle(fontSize: 20, color: Color(0xfff7892b)),
+        child:  RaisedButton(
+            child:Text('Log Out', style: TextStyle(fontSize: 20, color: Colors.white)),
+            onPressed:() async {
+              context.read<AuthenticationService>().signOut();
+              Navigator.push(context, MaterialPageRoute(builder: (context) => WelcomePage()));
+            }
         ),
       ),
     );
@@ -65,7 +71,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             Text(
-              'Quick login with Touch ID',
+              'LA HOME',
               style: TextStyle(color: Colors.white, fontSize: 17),
             ),
             SizedBox(

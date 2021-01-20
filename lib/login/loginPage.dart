@@ -1,9 +1,11 @@
+import 'package:anime_plus/home/home.dart';
 import 'package:anime_plus/login/signup.dart';
 import 'package:provider/provider.dart';
 import '../AuthenticationService.dart';
 import 'Widget/bezierContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -81,11 +83,15 @@ class _LoginPageState extends State<LoginPage> {
               colors: [Color(0xfffbb448), Color(0xfff7892b)])),
       child: RaisedButton(
         child:Text('Iniciar Sesión', style: TextStyle(fontSize: 20, color: Colors.white)),
-        onPressed:() {
-          context.read<AuthenticationService>().signUp(
+        onPressed:() async {
+
+          bool signIn = await context.read<AuthenticationService>().signIn(
             email: emailController.text.trim(),
             password: passwordController.text.trim(),
           );
+
+          if (signIn)
+            Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
         }
       ),
 

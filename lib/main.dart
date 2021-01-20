@@ -1,20 +1,29 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'AuthenticationService.dart';
+import 'FirebaseWrapper.dart';
 import 'home/home.dart';
 import 'welcomePage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(MyApp());
+
+  final FirebaseApp app = await FirebaseWrapper.iniciar();
+
+  runApp(MyApp(app : app));
 }
 
 class MyApp extends StatelessWidget {
+  MyApp({this.app});
+  final FirebaseApp app;
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +62,7 @@ class AuthenticationWrapper extends StatelessWidget {
       return WelcomePage();
     }
 
-    return null;
+    return HomePage();
   }
 }
-
 
