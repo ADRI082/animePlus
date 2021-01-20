@@ -1,3 +1,4 @@
+import 'package:anime_plus/home/home.dart';
 import 'package:flutter/material.dart';
 import '../AuthenticationService.dart';
 import 'Widget/bezierContainer.dart';
@@ -84,17 +85,18 @@ class _SignUpPageState extends State<SignUpPage> {
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-          child: Text('Registrarse ahora', style: TextStyle(fontSize: 20, color: Colors.white)),
+          child:  RaisedButton(
+              child: Text('Registrarse ahora', style: TextStyle(fontSize: 20, color: Colors.white)),
+              onPressed: () async {
+                bool signUp = await context.read<AuthenticationService>().signUp(
+                  email: emailController.text.trim(),
+                  password: passwordController.text.trim(),
+                );
+
+                if (signUp)
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+              }),
         ),
-        RaisedButton(onPressed: () {
-
-          context.read<AuthenticationService>().signUp(
-            email: emailController.text.trim(),
-            password: passwordController.text.trim(),
-          );
-
-
-        }, child: Text('Button'),)
       ],
     );
   }
