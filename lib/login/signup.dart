@@ -1,6 +1,6 @@
 import 'package:anime_plus/home/home.dart';
 import 'package:flutter/material.dart';
-import '../AuthenticationService.dart';
+import '../util/AuthenticationService.dart';
 import 'Widget/bezierContainer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';

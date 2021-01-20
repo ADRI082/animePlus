@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'AuthenticationService.dart';
-import 'FirebaseWrapper.dart';
+import 'util/AuthenticationService.dart';
+import 'util/FirebaseWrapper.dart';
 import 'home/home.dart';
-import 'welcomePage.dart';
+import 'login/welcomePage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

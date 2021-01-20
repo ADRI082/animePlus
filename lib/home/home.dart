@@ -1,9 +1,9 @@
 
 import 'package:anime_plus/login/signup.dart';
-import 'package:anime_plus/welcomePage.dart';
+import 'file:///C:/Users/jesus/AndroidStudioProjects/animePlus/lib/login/welcomePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../AuthenticationService.dart';
+import '../util/AuthenticationService.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
