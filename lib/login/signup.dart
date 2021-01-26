@@ -58,7 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
               obscureText: isPassword,
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  fillColor: Color(0xfff3f3f4),
+                  fillColor: Colors.grey[400].withOpacity(0.3),
                   filled: true))
         ],
       ),
@@ -69,6 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Column(
       children: [
         Container(
+          height: 65,
           width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.symmetric(vertical: 15),
           alignment: Alignment.center,
@@ -85,7 +86,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-          child:  RaisedButton(
+          child:  FlatButton(
+            color: Colors.transparent,
               child: Text('Registrarse ahora', style: TextStyle(fontSize: 20, color: Colors.white)),
               onPressed: () async {
                 bool signUp = await context.read<AuthenticationService>().signUp(
@@ -143,11 +145,11 @@ class _SignUpPageState extends State<SignUpPage> {
             textStyle: Theme.of(context).textTheme.headline4,
             fontSize: 30,
             fontWeight: FontWeight.w700,
-            color: Colors.white,
+            color: Colors.orangeAccent,
           ),
           children: [
             TextSpan(text: 'ni', style: TextStyle(color: Colors.black, fontSize: 30)),
-            TextSpan(text: 'me+',style: TextStyle(color: Colors.white, fontSize: 30)),
+            TextSpan(text: 'me+',style: TextStyle(color: Colors.orangeAccent, fontSize: 30)),
           ]),
     );
   }
@@ -155,9 +157,9 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryField("Username", usuarioController),
-        _entryField("Email id", emailController),
-        _entryField("Password", passwordController,isPassword: true),
+        _entryField("Usuario", usuarioController),
+        _entryField("Email", emailController),
+        _entryField("Contraseña", passwordController,isPassword: true),
       ],
     );
   }

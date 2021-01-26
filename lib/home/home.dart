@@ -1,6 +1,6 @@
 
 import 'package:anime_plus/login/signup.dart';
-import 'file:///C:/Users/jesus/AndroidStudioProjects/animePlus/lib/login/welcomePage.dart';
+import 'package:anime_plus/login/welcomePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../util/AuthenticationService.dart';

@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: isPassword,
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  fillColor: Color(0xfff3f3f4),
+                  fillColor: Colors.grey[400].withOpacity(0.3),
                   filled: true))
         ],
       ),
@@ -66,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _submitButton() {
     return Container(
+      height: 65,
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.symmetric(vertical: 15),
       alignment: Alignment.center,
@@ -82,7 +83,8 @@ class _LoginPageState extends State<LoginPage> {
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
               colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-      child: RaisedButton(
+      child: FlatButton(
+        color: Colors.transparent,
         child:Text('Iniciar Sesión', style: TextStyle(fontSize: 20, color: Colors.white)),
         onPressed:() async {
 
@@ -125,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _facebookButton() {
+  Widget _googleButton() {
     return Container(
       height: 50,
       margin: EdgeInsets.symmetric(vertical: 20),
@@ -138,13 +140,13 @@ class _LoginPageState extends State<LoginPage> {
             flex: 1,
             child: Container(
               decoration: BoxDecoration(
-                color: Color(0xff1959a9),
+                color: Colors.red,
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(5),
                     topLeft: Radius.circular(5)),
               ),
               alignment: Alignment.center,
-              child: Text('f',
+              child: Text('G',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 25,
@@ -155,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
             flex: 5,
             child: Container(
               decoration: BoxDecoration(
-                color: Color(0xff2872ba),
+                color: Colors.redAccent,
                 borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(5),
                     topRight: Radius.circular(5)),
@@ -206,11 +208,11 @@ class _LoginPageState extends State<LoginPage> {
             textStyle: Theme.of(context).textTheme.headline4,
             fontSize: 30,
             fontWeight: FontWeight.w700,
-            color: Colors.white,
+            color: Colors.orangeAccent,
           ),
           children: [
             TextSpan(text: 'ni', style: TextStyle(color: Colors.black, fontSize: 30)),
-            TextSpan(text: 'me+',style: TextStyle(color: Colors.white, fontSize: 30)),
+            TextSpan(text: 'me+',style: TextStyle(color: Colors.orangeAccent, fontSize: 30)),
           ]),
     );
   }
@@ -249,13 +251,8 @@ class _LoginPageState extends State<LoginPage> {
                   _emailPasswordWidget(),
                   SizedBox(height: 20),
                   _submitButton(),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    alignment: Alignment.centerRight,
-                    child: Text('Forgot Password ?',style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-                  ),
                   _divider(),
-                  _facebookButton(),
+                  _googleButton(),
                   SizedBox(height: height * .055),
                   _createAccountLabel(),
                 ],
