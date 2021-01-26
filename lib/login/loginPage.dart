@@ -94,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
           );
 
           if (signIn)
-            Navigator.push(context, MaterialPageRoute(builder: (context) => NavigationHomeScreen()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
         }
       ),
 

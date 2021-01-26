@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'navigation.dart';
 import 'util/AuthenticationService.dart';
 import 'util/FirebaseWrapper.dart';
 import 'home/home.dart';
@@ -62,7 +63,7 @@ class AuthenticationWrapper extends StatelessWidget {
       return WelcomePage();
     }
 
-    return HomePage();
+    return Navigation();
   }
 }
 
