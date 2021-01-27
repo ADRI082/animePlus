@@ -163,11 +163,18 @@ class _LoginPageState extends State<LoginPage> {
                     topRight: Radius.circular(5)),
               ),
               alignment: Alignment.center,
-              child: Text('Iniciar con Google',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400)),
+              child: FlatButton(
+                  color: Colors.transparent,
+                  child:Text('Iniciar con Google',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400)),
+                  onPressed:() async {
+                    await context.read<AuthenticationService>().signUpWithGoogle();
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                  }
+              ),
             ),
           ),
         ],
