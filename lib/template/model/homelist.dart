@@ -1,5 +1,5 @@
 
-import 'package:anime_plus/home/PortadaScreen.dart';
+import 'package:anime_plus/home/ListaScreen.dart';
 import 'package:anime_plus/template/design_course/home_design_course.dart';
 import 'package:anime_plus/template/fitness_app/fitness_app_home_screen.dart';
 import 'package:flutter/widgets.dart';
@@ -16,7 +16,7 @@ class HomeList {
   static List<HomeList> homeList = [
     HomeList(
       imagePath: 'assets/hotel/hotel_booking.png',
-      navigateScreen: PortadaScreen(),
+      navigateScreen: ListaScreen(titulo : 'Portada', tipo : 'portada'),
     ),
     HomeList(
       imagePath: 'assets/fitness_app/fitness_app.png',
