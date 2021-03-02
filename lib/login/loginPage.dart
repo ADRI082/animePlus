@@ -2,6 +2,7 @@ import 'package:anime_plus/home/home.dart';
 import 'package:anime_plus/login/signup.dart';
 import 'package:anime_plus/template/navigation_home_screen.dart';
 import 'package:provider/provider.dart';
+import '../navigation.dart';
 import '../util/AuthenticationService.dart';
 import 'Widget/bezierContainer.dart';
 import 'package:flutter/material.dart';
@@ -94,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
           );
 
           if (signIn)
-            Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Navigation()));
         }
       ),
 
@@ -165,15 +166,11 @@ class _LoginPageState extends State<LoginPage> {
               alignment: Alignment.center,
               child: FlatButton(
                   color: Colors.transparent,
-                  child:Text('Iniciar con Google',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400)),
-                  onPressed:() async {
-                    await context.read<AuthenticationService>().signUpWithGoogle();
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-                  }
+                  child: Text('Iniciar con Google', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400)),
+                      onPressed:() async {
+                          await context.read<AuthenticationService>().signUpWithGoogle();
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Navigation()));
+                      }
               ),
             ),
           ),

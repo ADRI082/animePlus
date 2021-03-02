@@ -1,5 +1,6 @@
 import 'package:anime_plus/home/home.dart';
 import 'package:flutter/material.dart';
+import '../navigation.dart';
 import '../util/AuthenticationService.dart';
 import 'Widget/bezierContainer.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -105,10 +106,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _loginAccountLabel() {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginPage()));
-      },
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage())),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20),
         padding: EdgeInsets.all(15),
@@ -116,20 +114,9 @@ class _SignUpPageState extends State<SignUpPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              '¿Tienes ya una cuenta?',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Text(
-              'Iniciar Sesión',
-              style: TextStyle(
-                  color: Color(0xfff79c4f),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600),
-            ),
+            Text('¿Tienes ya una cuenta?', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
+            SizedBox(width: 10),
+            Text( 'Iniciar Sesión', style: TextStyle(color: Color(0xfff79c4f),fontSize: 13,fontWeight: FontWeight.w600)),
           ],
         ),
       ),
@@ -157,10 +144,86 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryField("Usuario", usuarioController),
+        //_entryField("Usuario", usuarioController),
         _entryField("Email", emailController),
         _entryField("Contraseña", passwordController,isPassword: true),
       ],
+    );
+  }
+
+  Widget _divider() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Row(
+        children: <Widget>[
+          SizedBox( width: 20),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Divider( thickness: 1),
+            ),
+          ),
+          Text('o'),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Divider( thickness: 1),
+            ),
+          ),
+          SizedBox(width: 20),
+        ],
+      ),
+    );
+  }
+
+  Widget _googleButton() {
+    return Container(
+      height: 50,
+      margin: EdgeInsets.symmetric(vertical: 20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(5),
+                    topLeft: Radius.circular(5)),
+              ),
+              alignment: Alignment.center,
+              child: Text('G',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.w400)),
+            ),
+          ),
+          Expanded(
+            flex: 5,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.redAccent,
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(5),
+                    topRight: Radius.circular(5)),
+              ),
+              alignment: Alignment.center,
+              child: FlatButton(
+                  color: Colors.transparent,
+                  child: Text('Registrarse con Google', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400)),
+                  onPressed:() async {
+                    await context.read<AuthenticationService>().signUpWithGoogle();
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Navigation()));
+                  }
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -190,7 +253,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     _emailPasswordWidget(),
                     SizedBox(height: 20),
                     _submitButton(context),
-                    SizedBox(height: height * .14),
+                    _divider(),
+                    _googleButton(),
                     _loginAccountLabel(),
                   ],
                 ),
