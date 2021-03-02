@@ -17,7 +17,7 @@ class _PortadaScreenState extends State<PortadaScreen> with TickerProviderStateM
 
   AnimationController animationController;
 
-  List<AnimeListItem> animeList = AnimeListItem.listaAnimes;
+  List<AnimeListItem> animeList;
 
   final ScrollController _scrollController = ScrollController();
 
@@ -29,7 +29,7 @@ class _PortadaScreenState extends State<PortadaScreen> with TickerProviderStateM
   }
 
   Future<bool> getData() async {
-    await Future<dynamic>.delayed(const Duration(milliseconds: 200));
+    animeList = await  AnimeListItem.getLista('portada');
     return true;
   }
 
@@ -43,82 +43,50 @@ class _PortadaScreenState extends State<PortadaScreen> with TickerProviderStateM
   Widget build(BuildContext context) {
     return Theme(
       data: HotelAppTheme.buildLightTheme(),
-      child: Container(
-        child: Scaffold(
-          body: Stack(
-            children: <Widget>[
-              InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                onTap: () {
-                  FocusScope.of(context).requestFocus(FocusNode());
-                },
-                child: Column(
-                  children: <Widget>[
-                    getAppBarUI(),
-                    Expanded(
-                      child: NestedScrollView(
-                        controller: _scrollController,
-                        headerSliverBuilder:
-                            (BuildContext context, bool innerBoxIsScrolled) {
-                          return <Widget>[
-                            SliverList(
-                              delegate: SliverChildBuilderDelegate(
-                                      (BuildContext context, int index) {
-                                    return Column(
-                                      children: <Widget>[
-                                        getSearchBarUI(),
-                                      ],
-                                    );
-                                  }, childCount: 1),
-                            ),
-                            SliverPersistentHeader(
-                              pinned: true,
-                              floating: true,
-                              delegate: ContestTabHeader(
-                                getFilterBarUI(),
-                              ),
-                            ),
-                          ];
-                        },
-                        body: Container(
-                          color:
-                          HotelAppTheme.buildLightTheme().backgroundColor,
-                          child: ListView.builder(
-                            itemCount: animeList.length,
-                            padding: const EdgeInsets.only(top: 8),
-                            scrollDirection: Axis.vertical,
-                            itemBuilder: (BuildContext context, int index) {
-                              final int count =
-                              animeList.length > 10 ? 10 : animeList.length;
-                              final Animation<double> animation =
-                              Tween<double>(begin: 0.0, end: 1.0).animate(
-                                  CurvedAnimation(
-                                      parent: animationController,
-                                      curve: Interval(
-                                          (1 / count) * index, 1.0,
-                                          curve: Curves.fastOutSlowIn)));
-                              animationController.forward();
-                              return AnimeListView(
-                                callback: () {},
-                                animeItem: animeList[index],
-                                animation: animation,
-                                animationController: animationController,
+      child: Container(child: Scaffold(
+        body: Stack(
+          children: <Widget>[
+            InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+              child: Column(
+                children: <Widget>[
+                  getAppBarUI(),
+                  Expanded(
+                    child: NestedScrollView(
+                      controller: _scrollController,
+                      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+                        return <Widget>[
+                          SliverList(
+                            delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+                              return Column(
+                                children: <Widget>[
+                                  getSearchBarUI(),
+                                ],
                               );
-                            },
+                            }, childCount: 1)),
+                          SliverPersistentHeader(pinned: true, floating: true,
+                            delegate: ContestTabHeader(
+                              getFilterBarUI(),
+                            ),
                           ),
-                        ),
+                        ];
+                        },
+                      body: Container(
+                          color: HotelAppTheme.buildLightTheme().backgroundColor,
+                          child: getListUI()
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ),
+      ))
     );
   }
 
@@ -136,7 +104,7 @@ class _PortadaScreenState extends State<PortadaScreen> with TickerProviderStateM
       child: Column(
         children: <Widget>[
           Container(
-            height: MediaQuery.of(context).size.height - 156 - 50,
+            height: MediaQuery.of(context).size.height,
             child: FutureBuilder<bool>(
               future: getData(),
               builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
@@ -145,18 +113,16 @@ class _PortadaScreenState extends State<PortadaScreen> with TickerProviderStateM
                 } else {
                   return ListView.builder(
                     itemCount: animeList.length,
+                    padding: const EdgeInsets.only(top: 8),
                     scrollDirection: Axis.vertical,
                     itemBuilder: (BuildContext context, int index) {
-                      final int count =
-                      animeList.length > 10 ? 10 : animeList.length;
-                      final Animation<double> animation =
-                      Tween<double>(begin: 0.0, end: 1.0).animate(
+                      final int count = animeList.length > 10 ? 10 : animeList.length;
+                      final Animation<double> animation = Tween<double>(begin: 0.0, end: 1.0).animate(
                           CurvedAnimation(
                               parent: animationController,
-                              curve: Interval((1 / count) * index, 1.0,
-                                  curve: Curves.fastOutSlowIn)));
+                              curve: Interval( (1 / count) * index, 1.0, curve: Curves.fastOutSlowIn))
+                      );
                       animationController.forward();
-
                       return AnimeListView(
                         callback: () {},
                         animeItem: animeList[index],
@@ -179,9 +145,7 @@ class _PortadaScreenState extends State<PortadaScreen> with TickerProviderStateM
     final List<Widget> animeListViews = <Widget>[];
 
     for (int i = 0; i < animeList.length; i++) {
-
       final int count = animeList.length;
-
       final Animation<double> animation = Tween<double>(begin: 0.0, end: 1.0).animate(
         CurvedAnimation(
           parent: animationController,
@@ -310,12 +274,7 @@ class _PortadaScreenState extends State<PortadaScreen> with TickerProviderStateM
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      '20 animes en portada...',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w100,
-                        fontSize: 16,
-                      ),
+                    child: Text('20 animes en portada', style: TextStyle(fontWeight: FontWeight.w100, fontSize: 16),
                     ),
                   ),
                 ),
@@ -326,13 +285,10 @@ class _PortadaScreenState extends State<PortadaScreen> with TickerProviderStateM
                     highlightColor: Colors.transparent,
                     hoverColor: Colors.transparent,
                     splashColor: Colors.grey.withOpacity(0.2),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(4.0),
-                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(4.0)),
                     onTap: () {
                       FocusScope.of(context).requestFocus(FocusNode());
-                      Navigator.push<dynamic>(
-                        context,
+                      Navigator.push<dynamic>(context,
                         MaterialPageRoute<dynamic>(
                             builder: (BuildContext context) => FiltersScreen(),
                             fullscreenDialog: true),
@@ -342,18 +298,10 @@ class _PortadaScreenState extends State<PortadaScreen> with TickerProviderStateM
                       padding: const EdgeInsets.only(left: 8),
                       child: Row(
                         children: <Widget>[
-                          Text(
-                            'Filtro',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 16,
-                            ),
-                          ),
+                          Text('Filtro', style: TextStyle(fontWeight: FontWeight.w100, fontSize: 16)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Icon(Icons.sort,
-                                color: HotelAppTheme.buildLightTheme()
-                                    .primaryColor),
+                            child: Icon(Icons.sort, color: HotelAppTheme.buildLightTheme().primaryColor),
                           ),
                         ],
                       ),
@@ -364,13 +312,7 @@ class _PortadaScreenState extends State<PortadaScreen> with TickerProviderStateM
             ),
           ),
         ),
-        const Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          child: Divider(
-            height: 1,
-          ),
+        const Positioned(top: 0, left: 0, right: 0, child: Divider(height: 1),
         )
       ],
     );
@@ -388,8 +330,7 @@ class _PortadaScreenState extends State<PortadaScreen> with TickerProviderStateM
         ],
       ),
       child: Padding(
-        padding: EdgeInsets.only(
-            top: MediaQuery.of(context).padding.top, left: 8, right: 8),
+        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top, left: 8, right: 8),
         child: Row(
           children: <Widget>[
             Container(
@@ -399,29 +340,13 @@ class _PortadaScreenState extends State<PortadaScreen> with TickerProviderStateM
               child: Material(
                 color: Colors.transparent,
                 child: InkWell(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(32.0),
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(Icons.arrow_back),
-                  ),
+                  borderRadius: const BorderRadius.all(Radius.circular(32.0)),
+                  onTap: () => Navigator.pop(context),
+                  child: Padding(padding: const EdgeInsets.all(8.0), child: Icon(Icons.arrow_back)),
                 ),
               ),
             ),
-            Expanded(
-              child: Center(
-                child: Text(
-                  'Portada',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 22,
-                  ),
-                ),
-              ),
+            Expanded(child: Center(child: Text('Portada', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22))),
             )
           ],
         ),

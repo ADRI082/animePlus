@@ -1,23 +1,40 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 class AnimeListItem {
+  static const URL = "https://animeflv-webscrapper.herokuapp.com/animes/";
+
+  String id;
+  String imagen;
+  String titulo;
+  String ultimoEpisodio;
+  int reviews;
+  double rating;
 
   AnimeListItem({
     this.imagen = '',
     this.titulo = '',
+    this.id = '',
+    this.rating = 0,
+    this.ultimoEpisodio = '',
+    this.reviews = 0,
   });
 
-  String imagen;
-  String titulo;
+  static Future<List<AnimeListItem>> getLista(String endPoint) async {
+    List<AnimeListItem> lista;
+    var response = await http.get(URL + endPoint);
+    lista = (jsonDecode(response.body) as List).map((i) => AnimeListItem.fromJson(i)).toList();
+    return lista;
+  }
 
-  static List<AnimeListItem> listaAnimes = <AnimeListItem>[
-    AnimeListItem(
-      imagen: 'assets/hotel/hotel_1.png',
-      titulo: 'Grand Royal Hotel',
-    ),
-  ];
-
-  String get subtitulo => 'prueba';
-
-  get rating => 20.0;
-
-  get reviews => 'prueba';
+  factory AnimeListItem.fromJson(Map<String, dynamic> json) {
+    return AnimeListItem(
+      id : json['title'],
+      imagen: json['image'],
+      titulo: json['label'],
+      ultimoEpisodio: json['episode'],
+      rating: double.parse(json['rate']),
+      reviews: int.parse(json['votes'])
+    );
+  }
 }

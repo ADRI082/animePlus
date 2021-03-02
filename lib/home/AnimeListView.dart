@@ -3,7 +3,6 @@ import 'package:anime_plus/models/AnimeListItem.dart';
 import 'package:anime_plus/template/hotel_booking/hotel_app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class AnimeListView extends StatelessWidget {
@@ -27,12 +26,9 @@ class AnimeListView extends StatelessWidget {
       builder: (BuildContext context, Widget child) {
         return FadeTransition(
           opacity: animation,
-          child: Transform(
-            transform: Matrix4.translationValues(
-                0.0, 50 * (1.0 - animation.value), 0.0),
+          child: Transform(transform: Matrix4.translationValues(0.0, 50 * (1.0 - animation.value), 0.0),
             child: Padding(
-              padding: const EdgeInsets.only(
-                  left: 24, right: 24, top: 8, bottom: 16),
+              padding: const EdgeInsets.only(left: 24, right: 24, top: 8, bottom: 16),
               child: InkWell(
                 splashColor: Colors.transparent,
                 onTap: () {
@@ -57,14 +53,10 @@ class AnimeListView extends StatelessWidget {
                           children: <Widget>[
                             AspectRatio(
                               aspectRatio: 2,
-                              child: Image.asset(
-                                animeItem.imagen,
-                                fit: BoxFit.cover,
-                              ),
+                              child: Image.network(animeItem.imagen, fit: BoxFit.cover,),
                             ),
                             Container(
-                              color: HotelAppTheme.buildLightTheme()
-                                  .backgroundColor,
+                              color: HotelAppTheme.buildLightTheme().backgroundColor,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,14 +64,14 @@ class AnimeListView extends StatelessWidget {
                                   Expanded(
                                     child: Container(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 16, top: 8, bottom: 8),
+                                        padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
                                         child: Column(
                                           mainAxisAlignment:
                                           MainAxisAlignment.center,
                                           crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                           children: <Widget>[
+
                                             Text(
                                               animeItem.titulo,
                                               textAlign: TextAlign.left,
@@ -99,19 +91,10 @@ class AnimeListView extends StatelessWidget {
                                                     starCount: 5,
                                                     rating: animeItem.rating,
                                                     size: 20,
-                                                    color: HotelAppTheme
-                                                        .buildLightTheme()
-                                                        .primaryColor,
-                                                    borderColor: HotelAppTheme
-                                                        .buildLightTheme()
-                                                        .primaryColor,
+                                                    color: HotelAppTheme.buildLightTheme().primaryColor,
+                                                    borderColor: HotelAppTheme.buildLightTheme().primaryColor,
                                                   ),
-                                                  Text(
-                                                    '${animeItem.reviews} reseñas',
-                                                    style: TextStyle(
-                                                        fontSize: 14,
-                                                        color: Colors.grey
-                                                            .withOpacity(0.8)),
+                                                  Text('${animeItem.reviews} votos', style: TextStyle(fontSize: 14, color: Colors.grey.withOpacity(0.8)),
                                                   ),
                                                 ],
                                               ),
@@ -126,23 +109,17 @@ class AnimeListView extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Positioned(
-                          top: 8,
-                          right: 8,
+                        Positioned(top: 8, right: 8,
                           child: Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(32.0),
-                              ),
+                              borderRadius: const BorderRadius.all(Radius.circular(32.0)),
                               onTap: () {},
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Icon(
                                   Icons.favorite_border,
-                                  color: HotelAppTheme.buildLightTheme()
-                                      .primaryColor,
-                                ),
+                                  color: HotelAppTheme.buildLightTheme().primaryColor),
                               ),
                             ),
                           ),
