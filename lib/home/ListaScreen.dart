@@ -4,6 +4,7 @@ import 'package:anime_plus/models/AnimeListItem.dart';
 import 'package:anime_plus/template/hotel_booking/filters_screen.dart';
 import 'package:anime_plus/template/hotel_booking/hotel_app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'AnimeListView.dart';
@@ -77,7 +78,10 @@ class _ListaScreenState extends State<ListaScreen>
                       future: getData(),
                       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
                         if (!snapshot.hasData)
-                          return const SizedBox();
+                          return SpinKitRipple(
+                            color: Colors.deepOrange,
+                            size: 300.0,
+                          );
                         else
                           return Column(
                               children: <Widget>[
