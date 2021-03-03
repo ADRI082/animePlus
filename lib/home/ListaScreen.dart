@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:anime_plus/models/AnimeListItem.dart';
 import 'package:anime_plus/template/hotel_booking/filters_screen.dart';
-import 'package:anime_plus/template/hotel_booking/hotel_app_theme.dart';
+import 'package:anime_plus/util/AnimeTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -60,7 +60,7 @@ class _ListaScreenState extends State<ListaScreen>
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: HotelAppTheme.buildLightTheme(),
+      data: AnimeTheme.buildLightTheme(),
       child: Container(child: Scaffold(
         body: Stack(
           children: <Widget>[
@@ -105,7 +105,7 @@ class _ListaScreenState extends State<ListaScreen>
   Widget getAppBarUI() {
     return Container(
       decoration: BoxDecoration(
-        color: HotelAppTheme.buildLightTheme().backgroundColor,
+        color: AnimeTheme.buildLightTheme().backgroundColor,
         boxShadow: <BoxShadow>[BoxShadow(color: Colors.grey.withOpacity(0.2), offset: const Offset(0, 2), blurRadius: 8.0)],
       ),
       child: Padding(
@@ -143,9 +143,7 @@ class _ListaScreenState extends State<ListaScreen>
               padding: const EdgeInsets.only(right: 16, top: 8, bottom: 8),
               child: Container(
                 decoration: BoxDecoration(
-                  color: HotelAppTheme
-                      .buildLightTheme()
-                      .backgroundColor,
+                  color: AnimeTheme.buildLightTheme().backgroundColor,
                   borderRadius: const BorderRadius.all(Radius.circular(38.0)),
                   boxShadow: <BoxShadow>[
                     BoxShadow(color: Colors.grey.withOpacity(0.2),
@@ -159,9 +157,7 @@ class _ListaScreenState extends State<ListaScreen>
                   child: TextField(
                     controller: busquedaController,
                     style: const TextStyle(fontSize: 18),
-                    cursorColor: HotelAppTheme
-                        .buildLightTheme()
-                        .primaryColor,
+                    cursorColor: AnimeTheme.buildLightTheme().primaryColor,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'One Piece...',
@@ -174,9 +170,7 @@ class _ListaScreenState extends State<ListaScreen>
 
           Container(
             decoration: BoxDecoration(
-              color: HotelAppTheme
-                  .buildLightTheme()
-                  .primaryColor,
+              color: AnimeTheme.buildLightTheme().primaryColor,
               borderRadius: const BorderRadius.all(Radius.circular(38.0)),
               boxShadow: <BoxShadow>[
                 BoxShadow(color: Colors.grey.withOpacity(0.4),
@@ -195,9 +189,10 @@ class _ListaScreenState extends State<ListaScreen>
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Icon(
-                      FontAwesomeIcons.search, size: 20, color: HotelAppTheme
-                      .buildLightTheme()
-                      .backgroundColor),
+                      FontAwesomeIcons.search,
+                      size: 20,
+                      color: Color(0xFFEA6624)
+                  ),
                 ),
               ),
             ),
@@ -214,7 +209,7 @@ class _ListaScreenState extends State<ListaScreen>
           child: Container(
             height: 24,
             decoration: BoxDecoration(
-              color: HotelAppTheme
+              color: AnimeTheme
                   .buildLightTheme()
                   .backgroundColor,
               boxShadow: <BoxShadow>[
@@ -226,7 +221,7 @@ class _ListaScreenState extends State<ListaScreen>
           ),
         ),
         Container(
-          color: HotelAppTheme
+          color: AnimeTheme
               .buildLightTheme()
               .backgroundColor,
           child: Padding(
@@ -268,7 +263,7 @@ class _ListaScreenState extends State<ListaScreen>
                               fontWeight: FontWeight.w100, fontSize: 16)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Icon(Icons.sort, color: HotelAppTheme
+                            child: Icon(Icons.sort, color: AnimeTheme
                                 .buildLightTheme()
                                 .primaryColor),
                           ),
@@ -290,7 +285,7 @@ class _ListaScreenState extends State<ListaScreen>
   Widget getListUI() {
     return Container(
       decoration: BoxDecoration(
-        color: HotelAppTheme
+        color: AnimeTheme
             .buildLightTheme()
             .backgroundColor,
         boxShadow: <BoxShadow>[

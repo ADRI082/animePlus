@@ -1,6 +1,6 @@
 
 import 'package:anime_plus/models/AnimeListItem.dart';
-import 'package:anime_plus/template/hotel_booking/hotel_app_theme.dart';
+import 'package:anime_plus/util/AnimeTheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
@@ -56,7 +56,7 @@ class AnimeListView extends StatelessWidget {
                               child: Image.network(animeItem.imagen, fit: BoxFit.cover,),
                             ),
                             Container(
-                              color: HotelAppTheme.buildLightTheme().backgroundColor,
+                              color: AnimeTheme.buildLightTheme().backgroundColor,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,8 +91,8 @@ class AnimeListView extends StatelessWidget {
                                                     starCount: 5,
                                                     rating: animeItem.rating,
                                                     size: 20,
-                                                    color: HotelAppTheme.buildLightTheme().primaryColor,
-                                                    borderColor: HotelAppTheme.buildLightTheme().primaryColor,
+                                                    color: AnimeTheme.buildLightTheme().primaryColor,
+                                                    borderColor: AnimeTheme.buildLightTheme().primaryColor,
                                                   ),
                                                   Text('${animeItem.reviews} votos', style: TextStyle(fontSize: 14, color: Colors.grey.withOpacity(0.8)),
                                                   ),
@@ -119,7 +119,7 @@ class AnimeListView extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Icon(
                                   Icons.favorite_border,
-                                  color: HotelAppTheme.buildLightTheme().primaryColor),
+                                  color: AnimeTheme.buildLightTheme().primaryColor),
                               ),
                             ),
                           ),
