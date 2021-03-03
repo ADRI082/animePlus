@@ -22,6 +22,7 @@ class AnimeListItem {
 
   static Future<List<AnimeListItem>> getLista(String endPoint) async {
     List<AnimeListItem> lista;
+    print(URL + endPoint);
     var response = await http.get(URL + endPoint);
     lista = (jsonDecode(response.body) as List).map((i) => AnimeListItem.fromJson(i)).toList();
     return lista;

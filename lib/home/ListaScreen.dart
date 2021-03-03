@@ -22,7 +22,8 @@ class ListaScreen extends StatefulWidget {
   _ListaScreenState createState() => _ListaScreenState(titulo: titulo, tipo: tipo);
 }
 
-class _ListaScreenState extends State<ListaScreen> with TickerProviderStateMixin {
+class _ListaScreenState extends State<ListaScreen>
+    with TickerProviderStateMixin {
 
   final TextEditingController busquedaController = TextEditingController();
   AnimationController animationController;
@@ -45,7 +46,7 @@ class _ListaScreenState extends State<ListaScreen> with TickerProviderStateMixin
   }
 
   Future<bool> getData() async {
-    animeList = await  AnimeListItem.getLista(tipo);
+    animeList = await AnimeListItem.getLista(tipo);
     return true;
   }
 
@@ -72,13 +73,21 @@ class _ListaScreenState extends State<ListaScreen> with TickerProviderStateMixin
                 children: <Widget>[
                   getAppBarUI(),
                   Expanded(
-                    child: Column(
-                        children: <Widget>[
-                          getSearchBarUI(),
-                          getFilterBarUI(),
-                          getListUI()
-                        ]
-                    ),
+                    child: FutureBuilder<bool>(
+                      future: getData(),
+                      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                        if (!snapshot.hasData)
+                          return const SizedBox();
+                        else
+                          return Column(
+                              children: <Widget>[
+                                getSearchBarUI(),
+                                getFilterBarUI(),
+                                getListUI()
+                              ]
+                          );
+                      },
+                    )
                   )
                 ],
               ),
@@ -130,16 +139,25 @@ class _ListaScreenState extends State<ListaScreen> with TickerProviderStateMixin
               padding: const EdgeInsets.only(right: 16, top: 8, bottom: 8),
               child: Container(
                 decoration: BoxDecoration(
-                  color: HotelAppTheme.buildLightTheme().backgroundColor,
+                  color: HotelAppTheme
+                      .buildLightTheme()
+                      .backgroundColor,
                   borderRadius: const BorderRadius.all(Radius.circular(38.0)),
-                  boxShadow: <BoxShadow>[BoxShadow(color: Colors.grey.withOpacity(0.2), offset: const Offset(0, 2), blurRadius: 8.0),],
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(color: Colors.grey.withOpacity(0.2),
+                        offset: const Offset(0, 2),
+                        blurRadius: 8.0),
+                  ],
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
+                  padding: const EdgeInsets.only(
+                      left: 16, right: 16, top: 4, bottom: 4),
                   child: TextField(
                     controller: busquedaController,
                     style: const TextStyle(fontSize: 18),
-                    cursorColor: HotelAppTheme.buildLightTheme().primaryColor,
+                    cursorColor: HotelAppTheme
+                        .buildLightTheme()
+                        .primaryColor,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'One Piece...',
@@ -152,9 +170,15 @@ class _ListaScreenState extends State<ListaScreen> with TickerProviderStateMixin
 
           Container(
             decoration: BoxDecoration(
-              color: HotelAppTheme.buildLightTheme().primaryColor,
+              color: HotelAppTheme
+                  .buildLightTheme()
+                  .primaryColor,
               borderRadius: const BorderRadius.all(Radius.circular(38.0)),
-              boxShadow: <BoxShadow>[BoxShadow(color: Colors.grey.withOpacity(0.4), offset: const Offset(0, 2), blurRadius: 8.0),],
+              boxShadow: <BoxShadow>[
+                BoxShadow(color: Colors.grey.withOpacity(0.4),
+                    offset: const Offset(0, 2),
+                    blurRadius: 8.0),
+              ],
             ),
             child: Material(
               color: Colors.transparent,
@@ -166,7 +190,10 @@ class _ListaScreenState extends State<ListaScreen> with TickerProviderStateMixin
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Icon(FontAwesomeIcons.search, size: 20, color: HotelAppTheme.buildLightTheme().backgroundColor),
+                  child: Icon(
+                      FontAwesomeIcons.search, size: 20, color: HotelAppTheme
+                      .buildLightTheme()
+                      .backgroundColor),
                 ),
               ),
             ),
@@ -183,13 +210,21 @@ class _ListaScreenState extends State<ListaScreen> with TickerProviderStateMixin
           child: Container(
             height: 24,
             decoration: BoxDecoration(
-              color: HotelAppTheme.buildLightTheme().backgroundColor,
-              boxShadow: <BoxShadow>[BoxShadow(color: Colors.grey.withOpacity(0.2), offset: const Offset(0, -2), blurRadius: 8.0),],
+              color: HotelAppTheme
+                  .buildLightTheme()
+                  .backgroundColor,
+              boxShadow: <BoxShadow>[
+                BoxShadow(color: Colors.grey.withOpacity(0.2),
+                    offset: const Offset(0, -2),
+                    blurRadius: 8.0),
+              ],
             ),
           ),
         ),
         Container(
-          color: HotelAppTheme.buildLightTheme().backgroundColor,
+          color: HotelAppTheme
+              .buildLightTheme()
+              .backgroundColor,
           child: Padding(
             padding:
             const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 4),
@@ -199,8 +234,10 @@ class _ListaScreenState extends State<ListaScreen> with TickerProviderStateMixin
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                        tipo == 'portada' ? '20 animes en portada' : animeList.length.toString() + ' animes encontrados',
-                        style: TextStyle(fontWeight: FontWeight.w100, fontSize: 16)),
+                        tipo == 'portada' ? '20 animes en portada' : animeList
+                            .length.toString() + ' animes encontrados',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w100, fontSize: 16)),
                   ),
                 ),
                 Material(
@@ -223,10 +260,13 @@ class _ListaScreenState extends State<ListaScreen> with TickerProviderStateMixin
                       padding: const EdgeInsets.only(left: 8),
                       child: Row(
                         children: <Widget>[
-                          Text('Filtro', style: TextStyle(fontWeight: FontWeight.w100, fontSize: 16)),
+                          Text('Filtro', style: TextStyle(
+                              fontWeight: FontWeight.w100, fontSize: 16)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Icon(Icons.sort, color: HotelAppTheme.buildLightTheme().primaryColor),
+                            child: Icon(Icons.sort, color: HotelAppTheme
+                                .buildLightTheme()
+                                .primaryColor),
                           ),
                         ],
                       ),
@@ -246,7 +286,9 @@ class _ListaScreenState extends State<ListaScreen> with TickerProviderStateMixin
   Widget getListUI() {
     return Container(
       decoration: BoxDecoration(
-        color: HotelAppTheme.buildLightTheme().backgroundColor,
+        color: HotelAppTheme
+            .buildLightTheme()
+            .backgroundColor,
         boxShadow: <BoxShadow>[
           BoxShadow(
               color: Colors.grey.withOpacity(0.2),
@@ -258,33 +300,24 @@ class _ListaScreenState extends State<ListaScreen> with TickerProviderStateMixin
         children: <Widget>[
           Container(
             height: MediaQuery.of(context).size.height - 259,
-            child: FutureBuilder<bool>(
-              future: getData(),
-              builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                if (!snapshot.hasData) {
-                  return const SizedBox();
-                } else {
-                  return ListView.builder(
-                    itemCount: animeList.length,
-                    padding: const EdgeInsets.only(top: 8),
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (BuildContext context, int index) {
-                      final int count = animeList.length > 10 ? 10 : animeList.length;
-                      final Animation<double> animation = Tween<double>(begin: 0.0, end: 1.0).animate(
-                          CurvedAnimation(
-                              parent: animationController,
-                              curve: Interval( (1 / count) * index, 1.0, curve: Curves.fastOutSlowIn))
-                      );
-                      animationController.forward();
-                      return AnimeListView(
-                        callback: () {},
-                        animeItem: animeList[index],
-                        animation: animation,
-                        animationController: animationController,
-                      );
-                    },
-                  );
-                }
+            child: ListView.builder(
+              itemCount: animeList.length,
+              padding: const EdgeInsets.only(top: 8),
+              scrollDirection: Axis.vertical,
+              itemBuilder: (BuildContext context, int index) {
+                final int count = animeList.length > 10 ? 10 : animeList.length;
+                final Animation<double> animation = Tween<double>(begin: 0.0, end: 1.0).animate(
+                    CurvedAnimation(
+                        parent: animationController,
+                        curve: Interval( (1 / count) * index, 1.0, curve: Curves.fastOutSlowIn))
+                );
+                animationController.forward();
+                return AnimeListView(
+                  callback: () {},
+                  animeItem: animeList[index],
+                  animation: animation,
+                  animationController: animationController,
+                );
               },
             ),
           )
