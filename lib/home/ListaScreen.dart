@@ -105,9 +105,15 @@ class _ListaScreenState extends State<ListaScreen>
   Widget getAppBarUI() {
     return Container(
       decoration: BoxDecoration(
-        color: AnimeTheme.buildLightTheme().backgroundColor,
-        boxShadow: <BoxShadow>[BoxShadow(color: Colors.grey.withOpacity(0.2), offset: const Offset(0, 2), blurRadius: 8.0)],
+        color: AnimeTheme.buildLightTheme().primaryColor,
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              offset: const Offset(0, 2), blurRadius: 8.0
+          )
+        ],
       ),
+
       child: Padding(
         padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top, left: 8, right: 8),
         child: Row(
@@ -121,11 +127,26 @@ class _ListaScreenState extends State<ListaScreen>
                 child: InkWell(
                   borderRadius: const BorderRadius.all(Radius.circular(32.0)),
                   onTap: () => Navigator.pop(context),
-                  child: Padding(padding: const EdgeInsets.all(8.0), child: Icon(Icons.arrow_back)),
+                  child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                          Icons.arrow_back,
+                          color: AnimeTheme.buildLightTheme().backgroundColor
+                      )
+                  ),
                 ),
               ),
             ),
-            Expanded(child: Center(child: Text(titulo, style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22))),
+            Expanded(
+              child:
+              Center(
+                  child: Text(titulo,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 22,
+                          color: AnimeTheme.buildLightTheme().backgroundColor
+                      )
+                  )),
             )
           ],
         ),
@@ -146,9 +167,11 @@ class _ListaScreenState extends State<ListaScreen>
                   color: AnimeTheme.buildLightTheme().backgroundColor,
                   borderRadius: const BorderRadius.all(Radius.circular(38.0)),
                   boxShadow: <BoxShadow>[
-                    BoxShadow(color: Colors.grey.withOpacity(0.2),
+                    BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
                         offset: const Offset(0, 2),
-                        blurRadius: 8.0),
+                        blurRadius: 8.0
+                    ),
                   ],
                 ),
                 child: Padding(
@@ -170,7 +193,7 @@ class _ListaScreenState extends State<ListaScreen>
 
           Container(
             decoration: BoxDecoration(
-              color: AnimeTheme.buildLightTheme().primaryColor,
+              color: AnimeTheme.buildLightTheme().accentColor,
               borderRadius: const BorderRadius.all(Radius.circular(38.0)),
               boxShadow: <BoxShadow>[
                 BoxShadow(color: Colors.grey.withOpacity(0.4),
@@ -184,14 +207,17 @@ class _ListaScreenState extends State<ListaScreen>
                 borderRadius: const BorderRadius.all(Radius.circular(32.0)),
                 onTap: () {
                   var busqueda = busquedaController.text.trim();
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ListaScreen(titulo: busqueda, tipo: 'buscar/' + busqueda)));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ListaScreen(titulo: busqueda, tipo: 'buscar/' + busqueda)));
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Icon(
                       FontAwesomeIcons.search,
                       size: 20,
-                      color: Color(0xFFEA6624)
+                      color: AnimeTheme
+                          .buildLightTheme()
+                          .backgroundColor
                   ),
                 ),
               ),
@@ -263,9 +289,10 @@ class _ListaScreenState extends State<ListaScreen>
                               fontWeight: FontWeight.w100, fontSize: 16)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Icon(Icons.sort, color: AnimeTheme
-                                .buildLightTheme()
-                                .primaryColor),
+                            child: Icon(
+                                Icons.sort,
+                                color: AnimeTheme.buildLightTheme().primaryColor
+                            ),
                           ),
                         ],
                       ),
