@@ -1,8 +1,9 @@
 
-import 'package:anime_plus/login/signup.dart';
+import 'package:anime_plus/Utils/AuthenticationService.dart';
+import 'package:anime_plus/login/SignUp.dart';
+import 'package:anime_plus/login/WelcomePage.dart';
 import 'package:provider/provider.dart';
-import '../navigation.dart';
-import '../util/AuthenticationService.dart';
+import '../Navigation.dart';
 import 'Widget/bezierContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _backButton() {
     return InkWell(
       onTap: () {
-        Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(builder: (context) => WelcomePage()));
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
@@ -43,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _entryField(String title, TextEditingController controlador , {bool isPassword = false} ) {
+  Widget _entryField(String title, TextEditingController controlador , TextInputType keyboardType, {bool isPassword = false} ) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -54,6 +55,7 @@ class _LoginPageState extends State<LoginPage> {
           TextField(
               controller : controlador,
               obscureText: isPassword,
+              keyboardType: keyboardType,
               decoration: InputDecoration(
                   border: InputBorder.none,
                   fillColor: Colors.grey[400].withOpacity(0.3),
@@ -222,8 +224,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryField("Email", emailController),
-        _entryField("Contraseña", passwordController, isPassword: true),
+        _entryField("Email", emailController, TextInputType.emailAddress),
+        _entryField("Contraseña", passwordController,TextInputType.text, isPassword: true),
       ],
     );
   }

@@ -4,10 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'navigation.dart';
-import 'util/AuthenticationService.dart';
-import 'util/FirebaseWrapper.dart';
-import 'login/welcomePage.dart';
+import 'Utils/AuthenticationService.dart';
+import 'Utils/FirebaseWrapper.dart';
+import 'Navigation.dart';
+import 'login/WelcomePage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Future<void> main() async {

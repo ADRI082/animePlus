@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class AnimeListItem {
-  static const URL = "https://animeflv-webscrapper.herokuapp.com/animes";
+  static const BASE = "animeflv-webscrapper.herokuapp.com";
 
   String id;
   String imagen;
@@ -22,10 +22,13 @@ class AnimeListItem {
 
   static Future<List<AnimeListItem>> getLista(String endPoint) async {
     List<AnimeListItem> lista;
-    var response = await http.get(Uri.https(URL, '/$endPoint'));
+
+    Uri url = Uri.https(BASE, '/animes/$endPoint');
+    var response = await http.get(url);
     lista = (jsonDecode(response.body) as List)
         .map((i) => AnimeListItem.fromJson(i))
         .toList();
+
     return lista;
   }
 

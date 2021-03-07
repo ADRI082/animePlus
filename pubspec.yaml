@@ -34,10 +34,9 @@ dependencies:
  # Iconos y fuentes
   cupertino_icons: 1.0.2
   google_fonts: 2.0.0
-  font_awesome_flutter: ^8.11.0
 
   # Visual
-  smooth_star_rating: 1.1.1
+  smooth_star_rating: 1.0.4+2
   intl: ^0.17.0
   flutter_spinkit: 5.0.0
   fluttertoast: 7.1.8

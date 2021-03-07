@@ -1,4 +1,5 @@
-import 'package:anime_plus/util/AnimeTheme.dart';
+
+import 'package:anime_plus/Utils/AnimeTheme.dart';
 import 'package:flutter/material.dart';
 
 class RangeSliderView extends StatefulWidget {

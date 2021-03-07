@@ -1,8 +1,9 @@
 
+import 'package:anime_plus/Utils/AnimeTheme.dart';
 import 'package:anime_plus/models/AnimeListItem.dart';
-import 'package:anime_plus/util/AnimeTheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class AnimeListView extends StatelessWidget {
   const AnimeListView(
@@ -87,7 +88,6 @@ class AnimeListView extends StatelessWidget {
                                                 children: <Widget>[
                                                   SmoothStarRating(
                                                     allowHalfRating: true,
-                                                    starCount: 5,
                                                     rating: animeItem.rating,
                                                     size: 20,
                                                     color: AnimeTheme.buildLightTheme().primaryColor,
@@ -113,7 +113,9 @@ class AnimeListView extends StatelessWidget {
                             color: Colors.transparent,
                             child: InkWell(
                               borderRadius: const BorderRadius.all(Radius.circular(32.0)),
-                              onTap: () {},
+                              onTap: () {
+                                print('a favoritos!');
+                              },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Icon(

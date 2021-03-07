@@ -1,9 +1,9 @@
 
-import 'package:anime_plus/util/app_theme.dart';
-import 'package:anime_plus/widget/drawer/drawer_user_controller.dart';
-import 'package:anime_plus/widget/drawer/home_drawer.dart';
+import 'Drawer/DrawerUserController.dart';
+import 'Drawer/HomeDrawer.dart';
+import 'Portada/ListaScreen.dart';
+import 'Utils/AppTheme.dart';
 import 'package:flutter/material.dart';
-import 'home/ListaScreen.dart';
 
 class Navigation extends StatefulWidget {
   @override

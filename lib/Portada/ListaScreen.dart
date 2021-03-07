@@ -1,11 +1,11 @@
 import 'dart:ui';
 
+import 'package:anime_plus/Utils/AnimeTheme.dart';
 import 'package:anime_plus/models/AnimeListItem.dart';
-import 'package:anime_plus/template/hotel_booking/filters_screen.dart';
-import 'package:anime_plus/util/AnimeTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'AnimeListView.dart';
+import 'FiltersScreen.dart';
 
 class ListaScreen extends StatefulWidget {
 
@@ -122,23 +122,10 @@ class _ListaScreenState extends State<ListaScreen>
               height: AppBar().preferredSize.height,
               child: Material(
                 color: Colors.transparent,
-                child: InkWell(
-                  borderRadius: const BorderRadius.all(Radius.circular(32.0)),
-                  onTap: () => Navigator.pop(context),
-                  child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(
-                          Icons.arrow_back,
-                          color: AnimeTheme.buildLightTheme().backgroundColor
-                      )
-                  ),
-                ),
               ),
             ),
             Expanded(
-              child:
-              Center(
-                  child: Text(titulo,
+              child: Center(child: Text(titulo,
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 22,
@@ -337,7 +324,9 @@ class _ListaScreenState extends State<ListaScreen>
                 );
                 animationController.forward();
                 return AnimeListView(
-                  callback: () {},
+                  callback: () {
+                    print('al anime!');
+                  },
                   animeItem: animeList[index],
                   animation: animation,
                   animationController: animationController,

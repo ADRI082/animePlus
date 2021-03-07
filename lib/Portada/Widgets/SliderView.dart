@@ -1,4 +1,5 @@
-import 'package:anime_plus/util/AnimeTheme.dart';
+
+import 'package:anime_plus/Utils/AnimeTheme.dart';
 import 'package:flutter/material.dart';
 
 
@@ -14,7 +15,7 @@ class SliderView extends StatefulWidget {
 }
 
 class _SliderViewState extends State<SliderView> {
-  double distValue = 50.0;
+  double distValue = 5.0;
 
   @override
   void initState() {
@@ -36,12 +37,12 @@ class _SliderViewState extends State<SliderView> {
               Container(
                 width: 170,
                 child: Text(
-                  'Less than ${(distValue / 10).toStringAsFixed(1)} Km',
+                  'Más de ${(distValue).toStringAsFixed(1)} estrellas',
                   textAlign: TextAlign.center,
                 ),
               ),
               Expanded(
-                flex: 100 - distValue.round(),
+                flex: 5 - distValue.round(),
                 child: const SizedBox(),
               ),
             ],

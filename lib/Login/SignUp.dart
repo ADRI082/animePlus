@@ -1,11 +1,12 @@
 
+import 'package:anime_plus/login/WelcomePage.dart';
 import 'package:flutter/material.dart';
-import '../navigation.dart';
-import '../util/AuthenticationService.dart';
+import '../Navigation.dart';
+import '../Utils/AuthenticationService.dart';
 import 'Widget/bezierContainer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'loginPage.dart';
+import 'LoginPage.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key key, this.title}) : super(key: key);
@@ -24,7 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _backButton() {
     return InkWell(
       onTap: () {
-        Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(builder: (context) => WelcomePage()));
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
@@ -41,7 +42,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _entryField(String title, TextEditingController controlador , {bool isPassword = false} ) {
+  Widget _entryField(String title, TextEditingController controlador, TextInputType keyboardType , {bool isPassword = false} ) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -57,6 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
           TextField(
               controller: controlador,
               obscureText: isPassword,
+              keyboardType: keyboardType,
               decoration: InputDecoration(
                   border: InputBorder.none,
                   fillColor: Colors.grey[400].withOpacity(0.3),
@@ -97,7 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 );
 
                 if (signUp)
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Navigation()));
               }),
         ),
       ],
@@ -145,8 +147,8 @@ class _SignUpPageState extends State<SignUpPage> {
     return Column(
       children: <Widget>[
         //_entryField("Usuario", usuarioController),
-        _entryField("Email", emailController),
-        _entryField("Contraseña", passwordController,isPassword: true),
+        _entryField("Email", emailController, TextInputType.emailAddress),
+        _entryField("Contraseña", passwordController,TextInputType.text, isPassword: true),
       ],
     );
   }
