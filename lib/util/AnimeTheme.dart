@@ -1,6 +1,3 @@
-
-
-import 'package:anime_plus/template/main.dart';
 import 'package:flutter/material.dart';
 
 class AnimeTheme {

@@ -1,4 +1,4 @@
-import 'package:anime_plus/home/home.dart';
+
 import 'package:flutter/material.dart';
 import '../navigation.dart';
 import '../util/AuthenticationService.dart';

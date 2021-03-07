@@ -1,6 +1,5 @@
+import 'package:anime_plus/util/AnimeTheme.dart';
 import 'package:flutter/material.dart';
-
-import 'hotel_app_theme.dart';
 
 class RangeSliderView extends StatefulWidget {
   const RangeSliderView({Key key, this.values, this.onChangeRangeValues})
@@ -77,7 +76,7 @@ class _RangeSliderViewState extends State<RangeSliderView> {
               values: _values,
               min: 0.0,
               max: 1000.0,
-              activeColor: HotelAppTheme.buildLightTheme().primaryColor,
+              activeColor: AnimeTheme.buildLightTheme().primaryColor,
               inactiveColor: Colors.grey.withOpacity(0.4),
               divisions: 1000,
               onChanged: (RangeValues values) {

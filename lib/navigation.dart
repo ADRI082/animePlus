@@ -1,13 +1,9 @@
 
-import 'package:anime_plus/template/feedback_screen.dart';
-import 'package:anime_plus/template/help_screen.dart';
-import 'package:anime_plus/template/invite_friend_screen.dart';
 import 'package:anime_plus/util/app_theme.dart';
 import 'package:anime_plus/widget/drawer/drawer_user_controller.dart';
 import 'package:anime_plus/widget/drawer/home_drawer.dart';
 import 'package:flutter/material.dart';
-
-import 'home/home.dart';
+import 'home/ListaScreen.dart';
 
 class Navigation extends StatefulWidget {
   @override
@@ -21,7 +17,7 @@ class _NavigationState extends State<Navigation> {
   @override
   void initState() {
     drawerIndex = DrawerIndex.HOME;
-    screenView = HomePage();
+    screenView =  ListaScreen(titulo : 'Portada', tipo : 'portada');
     super.initState();
   }
 
@@ -52,19 +48,19 @@ class _NavigationState extends State<Navigation> {
       drawerIndex = drawerIndexdata;
       if (drawerIndex == DrawerIndex.HOME) {
         setState(() {
-          screenView = HomePage();
+          screenView = ListaScreen(titulo : 'Portada', tipo : 'portada');
         });
       } else if (drawerIndex == DrawerIndex.Help) {
         setState(() {
-          screenView = HelpScreen();
+          screenView = Container();
         });
       } else if (drawerIndex == DrawerIndex.FeedBack) {
         setState(() {
-          screenView = FeedbackScreen();
+          screenView = Container();
         });
       } else if (drawerIndex == DrawerIndex.Invite) {
         setState(() {
-          screenView = InviteFriend();
+          screenView = Container();
         });
       } else {
         //do in your way......

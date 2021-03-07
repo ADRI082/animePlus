@@ -5,8 +5,6 @@ import 'package:anime_plus/template/hotel_booking/filters_screen.dart';
 import 'package:anime_plus/util/AnimeTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'AnimeListView.dart';
 
 class ListaScreen extends StatefulWidget {
@@ -213,7 +211,7 @@ class _ListaScreenState extends State<ListaScreen>
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Icon(
-                      FontAwesomeIcons.search,
+                      Icons.search,
                       size: 20,
                       color: AnimeTheme
                           .buildLightTheme()
